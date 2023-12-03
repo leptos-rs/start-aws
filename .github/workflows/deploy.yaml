@@ -1,0 +1,48 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  RUSTFLAGS: --cfg=web_sys_unstable_apis
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Rust
+        id: toolchain
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2023-12-02
+          targets: "wasm32-unknown-unknown"
+          components: "rustfmt"
+
+      - name: Set rust toolchain variable
+        run: echo "RUSTUP_TOOLCHAIN=${{steps.toolchain.outputs.name}}" >> $GITHUB_ENV
+
+      - name: Check formatting
+        run: cargo fmt --check
+
+      - name: Set up Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install cargo tools
+        run: |
+          pip install cargo-lambda
+          cargo install --locked cargo-leptos
+
+      - name: Deploy lambda
+        run: |
+          cargo leptos build --release
+          cargo lambda build --release --features=ssr --no-default-features
+          cargo lambda deploy --include target/site --enable-function-url
+        env:
+          LEPTOS_OUTPUT_NAME: ${{ vars.LEPTOS_OUTPUT_NAME }}
+          AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
