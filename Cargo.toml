@@ -65,7 +65,7 @@ opt-level = 2
 [package.metadata.lambda.deploy]
 # Leptos generally doesn't take more than a few hundred milliseconds even with a cold start
 timeout = 3
-env = { LEPTOS_ENV = "PROD", LEPTOS_OUTPUT_NAME = "aws-lambda", LEPTOS_SITE_ROOT = "target/site", LEPTOS_SITE_PKG_DIR = "pkg" }
+env = { LEPTOS_ENV = "PROD", LEPTOS_OUTPUT_NAME = "{{project-name}}", LEPTOS_SITE_ROOT = "target/site", LEPTOS_SITE_PKG_DIR = "pkg" }
 
 [package.metadata.leptos]
 # Since we'll be testing without --release, we'll set up a dev profile to allow some optimization

@@ -90,10 +90,10 @@ you'll have to manage the WASM build and optimization yourself.
 Next, let's build the production server binary:
 
 ```bash
-LEPTOS_OUTPUT_NAME=aws-lambda cargo lambda build --no-default-features --features=ssr --release
+LEPTOS_OUTPUT_NAME={{project-name}} cargo lambda build --no-default-features --features=ssr --release
 ```
 
-This should produce a binary at `target/lambda/aws-lambda/bootstrap`.
+This should produce a binary at `target/lambda/{{project-name}}/bootstrap`.
 `Cargo.toml` exposes all the required environment variables to `cargo-lambda`
 so that the server can run in production.
 
@@ -107,6 +107,7 @@ After a few seconds, `cargo-lambda` should print out the URL of your deployed fu
 
 This template provides a GitHub action that handles all these steps automatically.
 To use it, you'll need to provide your AWS credentials as [repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
+You'll also need to provide the project name as a variable.
 
 ## Notes
 
