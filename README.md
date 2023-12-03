@@ -16,6 +16,7 @@ cargo install cargo-leptos
 ```
 
 Then run
+
 ```bash
 cargo leptos new --git leptos-rs/start-axum
 ```
@@ -28,7 +29,7 @@ cd {{project-name}}
 
 to go to your newly created project.  
 Feel free to explore the project structure, but the best place to start with your application code is in `src/app.rs`.  
-Addtionally, Cargo.toml may need updating as new versions of the dependencies are released, especially if things are not working after a `cargo update`.
+Additionally, Cargo.toml may need updating as new versions of the dependencies are released, especially if things are not working after a `cargo update`.
 
 ## Running your project
 
@@ -50,6 +51,7 @@ By default, `cargo-leptos` uses `nightly` Rust, `cargo-generate`, and `sass`. If
 4. `npm install -g sass` - install `dart-sass` (should be optional in future
 
 ## Compiling for Release
+
 ```bash
 cargo leptos build --release
 ```
@@ -57,6 +59,7 @@ cargo leptos build --release
 Will generate your server binary in target/server/release and your site package in target/site
 
 ## Testing Your Project
+
 ```bash
 cargo leptos end-to-end
 ```
@@ -114,18 +117,26 @@ You'll need AWS credentials with some permissions for IAM and Lambda operations.
 
 Setting up permissions can be a bit onerous if this is your first time working with AWS.
 For a quick and dirty setup, you can:
+
 1. Create a new user in the IAM service (Access Management > Users)
 2. Click "Attach policies directly" on the "Set permissions" page
 3. Add the "AWSLambda_FullAccess" and "IAMFullAccess" policies, and complete the user creation
 4. Create an access key for the user (don't worry about the warning)
 5. Place the access key and secret key in `~/.aws/credentials` (or wherever the
-  appropriate location is for your system):
+   appropriate location is for your system):
 
 ```
 [default]
 aws_access_key_id = AKIAQYLPMN5HCTNK35FD
 aws_secret_access_key = rbWHpaI/lJnXdLteWHNnTVZpQztMB2+pdbb+KVgr
-````
+```
+
+### State
+
+Since AWS Lambda is a serverless platform, you'll need to be more careful about how
+you manage long-lived state. Writing to disk or using an axum state extractor will
+not work reliably across requests. Instead, you'll need a database or other
+microservices that you can query from the Lambda function.
 
 ### Optimizations
 
