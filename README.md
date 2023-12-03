@@ -102,6 +102,9 @@ cargo lambda deploy --include target/site --enable-function-url
 
 After a few seconds, `cargo-lambda` should print out the URL of your deployed function!
 
+This template provides a GitHub action that handles all these steps automatically.
+To use it, you'll need to provide your AWS credentials as [repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
+
 ## Notes
 
 ### Credentials
