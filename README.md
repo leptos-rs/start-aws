@@ -15,10 +15,10 @@ If you don't have `cargo-leptos` installed you can install it with
 cargo install cargo-leptos
 ```
 
-Then run
+Then either click the "Use this template" button in the Github UI or run
 
 ```bash
-cargo leptos new --git leptos-rs/start-axum
+cargo generate --git https://github.com/leptos-rs/start-aws.git
 ```
 
 to generate a new project template.
