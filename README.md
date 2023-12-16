@@ -27,8 +27,8 @@ to generate a new project template.
 cd {{project-name}}
 ```
 
-to go to your newly created project.  
-Feel free to explore the project structure, but the best place to start with your application code is in `src/app.rs`.  
+to go to your newly created project.
+Feel free to explore the project structure, but the best place to start with your application code is in `src/app.rs`.
 Additionally, Cargo.toml may need updating as new versions of the dependencies are released, especially if things are not working after a `cargo update`.
 
 ## Running your project
@@ -68,7 +68,7 @@ cargo leptos end-to-end
 cargo leptos end-to-end --release
 ```
 
-Cargo-leptos uses Playwright as the end-to-end test tool.  
+Cargo-leptos uses Playwright as the end-to-end test tool.
 Tests are located in end2end/tests directory.
 
 ## Deploying Your Project
@@ -128,8 +128,8 @@ For a quick and dirty setup, you can:
 
 ```
 [default]
-aws_access_key_id = AKIAQYLPMN5HCTNK35FD
-aws_secret_access_key = rbWHpaI/lJnXdLteWHNnTVZpQztMB2+pdbb+KVgr
+aws_access_key_id = ***************
+aws_secret_access_key = ***************
 ```
 
 ### State
