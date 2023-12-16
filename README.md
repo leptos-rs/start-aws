@@ -122,7 +122,7 @@ For a quick and dirty setup, you can:
 1. Create a new user in the IAM service (Access Management > Users)
 2. Click "Attach policies directly" on the "Set permissions" page
 3. Add the "AWSLambda_FullAccess" and "IAMFullAccess" policies, and complete the user creation
-4. Create an access key for the user (don't worry about the warning)
+4. Create an access key for the user, with "Use case" "Application running on an AWS compute service" (don't worry about the warning - just confirm)
 5. Place the access key and secret key in `~/.aws/credentials` (or wherever the
    appropriate location is for your system):
 
@@ -131,6 +131,20 @@ For a quick and dirty setup, you can:
 aws_access_key_id = ***************
 aws_secret_access_key = ***************
 ```
+
+
+To use Github Actions to deploy to AWS Lambda, add the following variables and secrets to Github by going to your repo's "Settings" > "Secrets and Variables" > "Actions"
+and enter in the following:
+
+Variables:
+
+- LEPTOS_OUTPUT_NAME - the name of your project, as in the `Cargo.toml` file
+- AWS_DEFAULT_REGION - the AWS region you want your Lambda deployed to, eg. `us-west-2`
+
+Secrets:
+
+- AWS_ACCESS_KEY_ID - from AWS IAM credentials
+- AWS_SECRET_ACCESS_KEY - the secret key associated with the Access Key, from the AWS IAM step (above)
 
 ### State
 
