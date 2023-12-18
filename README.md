@@ -123,15 +123,14 @@ For a quick and dirty setup, you can:
 2. Click "Attach policies directly" on the "Set permissions" page
 3. Add the "AWSLambda_FullAccess" and "IAMFullAccess" policies, and complete the user creation
 4. Create an access key for the user, with "Use case" "Application running on an AWS compute service" (don't worry about the warning - just confirm)
-5. Place the access key and secret key in `~/.aws/credentials` (or wherever the
-   appropriate location is for your system):
+5. Save your credentials in a password manager or in a `~/.aws/credentials` file (or wherever the
+   appropriate location is for your system); your AWS access key and secret key will look similar to the (randomly generated) example, below.
 
 ```
 [default]
-aws_access_key_id = ***************
-aws_secret_access_key = ***************
+aws_access_key_id = AKIAQYLPMN5HCTNK35FD
+aws_secret_access_key = rbWHpaI/lJnXdLteWHNnTVZpQztMB2+pdbb+KVgr
 ```
-
 
 To use Github Actions to deploy to AWS Lambda, add the following variables and secrets to Github by going to your repo's "Settings" > "Secrets and Variables" > "Actions"
 and enter in the following:
