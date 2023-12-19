@@ -123,8 +123,8 @@ For a quick and dirty setup, you can:
 2. Click "Attach policies directly" on the "Set permissions" page
 3. Add the "AWSLambda_FullAccess" and "IAMFullAccess" policies, and complete the user creation
 4. Create an access key for the user, with "Use case" "Application running on an AWS compute service" (don't worry about the warning - just confirm)
-5. Save your credentials in a password manager or in a `~/.aws/credentials` file (or wherever the
-   appropriate location is for your system); your AWS access key and secret key will look similar to the (randomly generated) example, below.
+5. Save your credentials in an `~/.aws/credentials` file (or the appropriate location for your system, for `cargo-lambda` deployments),
+or store the credentials in a password manager for later setting up CI/CD deploys; your AWS access key and secret key will look similar to the (randomly generated) example, below.
 
 ```
 [default]
