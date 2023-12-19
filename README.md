@@ -27,8 +27,8 @@ to generate a new project template.
 cd {{project-name}}
 ```
 
-to go to your newly created project.  
-Feel free to explore the project structure, but the best place to start with your application code is in `src/app.rs`.  
+to go to your newly created project.
+Feel free to explore the project structure, but the best place to start with your application code is in `src/app.rs`.
 Additionally, Cargo.toml may need updating as new versions of the dependencies are released, especially if things are not working after a `cargo update`.
 
 ## Running your project
@@ -68,7 +68,7 @@ cargo leptos end-to-end
 cargo leptos end-to-end --release
 ```
 
-Cargo-leptos uses Playwright as the end-to-end test tool.  
+Cargo-leptos uses Playwright as the end-to-end test tool.
 Tests are located in end2end/tests directory.
 
 ## Deploying Your Project
@@ -122,15 +122,28 @@ For a quick and dirty setup, you can:
 1. Create a new user in the IAM service (Access Management > Users)
 2. Click "Attach policies directly" on the "Set permissions" page
 3. Add the "AWSLambda_FullAccess" and "IAMFullAccess" policies, and complete the user creation
-4. Create an access key for the user (don't worry about the warning)
-5. Place the access key and secret key in `~/.aws/credentials` (or wherever the
-   appropriate location is for your system):
+4. Create an access key for the user, with "Use case" "Application running on an AWS compute service" (don't worry about the warning - just confirm)
+5. Save your credentials in an `~/.aws/credentials` file (or the appropriate location for your system, for `cargo-lambda` deployments),
+or store the credentials in a password manager for later setting up CI/CD deploys; your AWS access key and secret key will look similar to the (randomly generated) example, below.
 
 ```
 [default]
 aws_access_key_id = AKIAQYLPMN5HCTNK35FD
 aws_secret_access_key = rbWHpaI/lJnXdLteWHNnTVZpQztMB2+pdbb+KVgr
 ```
+
+To use Github Actions to deploy to AWS Lambda, add the following variables and secrets to Github by going to your repo's "Settings" > "Secrets and Variables" > "Actions"
+and enter in the following:
+
+Variables:
+
+- LEPTOS_OUTPUT_NAME - the name of your project, as in the `Cargo.toml` file
+- AWS_DEFAULT_REGION - the AWS region you want your Lambda deployed to, eg. `us-west-2`
+
+Secrets:
+
+- AWS_ACCESS_KEY_ID - from AWS IAM credentials
+- AWS_SECRET_ACCESS_KEY - the secret key associated with the Access Key, from the AWS IAM step (above)
 
 ### State
 

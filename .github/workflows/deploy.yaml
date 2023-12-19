@@ -18,7 +18,7 @@ jobs:
         id: toolchain
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: nightly-2023-12-02
+          toolchain: nightly
           targets: "wasm32-unknown-unknown"
           components: "rustfmt"
 
@@ -40,7 +40,7 @@ jobs:
         run: |
           cargo leptos build --release
           cargo lambda build --release --features=ssr --no-default-features
-          cargo lambda deploy --include target/site --enable-function-url
+          cargo lambda deploy --include target/site --enable-function-url | tail -n 1 >> $GITHUB_STEP_SUMMARY
         env:
           LEPTOS_OUTPUT_NAME: ${{ vars.LEPTOS_OUTPUT_NAME }}
           AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
